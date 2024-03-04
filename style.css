@@ -1,0 +1,498 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    overflow-x: hidden;
+}
+html {
+    height: 100%;
+    overflow-y: auto; /* Allows vertical scrolling */
+
+}
+body {
+    min-height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    /* No need to set overflow-y here unless you specifically want to control it */
+}
+
+h1, h2, h3 {
+    font-weight: 600; /* Semi-bold for headings */
+}
+
+header {
+    /* background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: #fff; */
+    padding: 40px 20px;
+    text-align: center;
+    min-width: 200px; /* Optional: constrain paragraph width for better readability */
+
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+.highlight {
+    color: #ff6e40; /* A bright color to highlight 'videos' */
+}
+.emoji {
+    font-size: 0.75em; /* Adjusts the size relative to its container */
+    vertical-align: middle; /* Aligns emoji with the surrounding text */
+}
+
+
+header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+.content p {
+  font-size: 1rem; /* Adjust size as needed */
+  font-weight: 400; /* Regular weight; adjust as needed */
+  line-height: 1.6; /* Enhance readability */
+  color: #ffffff; /* Set text color to white */
+  margin: 20px 0; /* Add top and bottom margin as needed */
+  text-align: left;
+  width: 100%; /* Ensure it matches the width of its container */
+}
+#filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+
+.tag:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+
+/* Navigation Bar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 10%;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0); /* Transparent */
+    z-index: 1000;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        padding: 10px 5%; /* Adjust padding */
+        justify-content: center;
+        background-color: rgba(26, 26, 46, 0.7); /* Increase opacity for readability */
+    }
+
+    .navbar .logo, .navbar ul {
+        margin-bottom: 5px; /* Add space between logo and navigation items */
+    }
+
+    .navbar ul li a {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+}
+
+.navbar.scrolled {
+    background-color: rgba(26, 26, 46, 0.7); /* Semi-transparent when scrolled */
+}
+
+.navbar .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: white; /* Or any color that fits your design */
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center the navigation items */
+    flex-grow: 1;
+}
+
+.navbar ul li {
+    padding: 0 20px; /* Adjust spacing between navigation items */
+}
+.navbar ul li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white; /* Bright color for navbar items */
+    transition: color 0.3s ease;
+}
+
+
+.navbar ul li a:hover {
+    color: #00dbde; /* Change color on hover */
+}
+
+
+.first-screen {
+  display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 0 20px;
+   box-sizing: border-box;
+   margin-top: 60px; /* Adjust this value based on the navbar's height */
+}
+@media (max-width: 768px) {
+    .first-screen {
+        margin-top: 100px; /* Increase margin-top for small screens if navbar is taller */
+    }
+}
+.trending-tags-area {
+    width: 100%; /* Full width to prevent horizontal overflow */
+    padding: 20px; /* Ensure there's padding around the content */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    margin-top: 20px; /* Add space above the categories area */
+}
+@media (max-width: 768px) {
+    .first-screen, .trending-tags-area {
+        padding: 15px; /* Adjust padding for smaller screens */
+        margin-top: 60px; /* Increase space at the top to avoid overlap with a fixed navbar */
+    }
+
+    /* If your navbar height is variable or needs more space */
+    .navbar {
+        min-height: 60px; /* Adjust based on actual navbar height */
+    }
+}
+
+#p5-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Canvas is below the content */
+    pointer-events: none; /* Allows clicks to pass through to content */
+}
+.first-screen .content {
+    position: relative;
+    z-index: 2; /* Ensure this content is above the p5 canvas */
+    /* Additional styling for your content */
+    max-width: 600px; /* Ensures content doesn't stretch too wide */
+    width: 100%; /* Ensures content scales down on narrow screens */
+    margin-bottom: 20px; /* Space for the categories area below */
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Ensure content is above the p5 canvas */
+    width: 50%; /* Content occupies half of the screen's width */
+    max-width: 600px; /* Adjust max-width as needed for larger screens */
+    margin: 0 auto; /* Center the content container horizontally */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-align the flex items */
+    text-align: left; /* Ensure text within items is left-aligned */
+    max-width: 600px; /* Adjust based on your design */
+
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Add padding to prevent text from touching the edges */
+    box-sizing: border-box;
+}
+
+.content h1 {
+    font-size: 5rem; /* Large font size for the title */
+    background: -webkit-linear-gradient(left, #00dbde, #fc00ff); /* Gradient text */
+    -webkit-background-clip: text;
+    /* -webkit-text-fill-color: transparent; */
+    margin-bottom: 20px;
+}
+
+.content p {
+    font-size: 1rem;
+    color: #eee; /* Lighter text color for readability */
+}
+.content h1, .content p {
+    width: 100%; /* Ensure full width within the container for alignment */
+}
+.trending-tags-area {
+    width: 100%;
+    max-width: 600px; /* Match the content width */
+    margin: 30px auto; /* Increase margin for better spacing */
+    padding: 20px;
+     /* background: rgba(255, 255, 255, 0.1);Subtle background for contrast */
+    /* border-radius: 15px; Soften edges */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); Subtle shadow for depth */
+    color: #ffffff; /* Ensure text color contrasts well for accessibility */
+}
+
+
+
+
+.search-bar {
+    position: relative;
+    width: 100%;
+    margin-top: 20px; /* Add space above the search bar */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px; /* Increase padding for easier interaction */
+    border-radius: 12px; /* Rounded corners */
+    border: 2px solid white; /* Solid border for clarity */
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent background */
+    color: white; /* Text color */
+    font-size: 1rem; /* Readable font size */
+    padding-right: 40px; /* Make room for the X button */
+}
+#clearSearch {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.search-bar input:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000000;
+}
+.search-bar input::placeholder {
+    color: #ffffff; /* Placeholder text color */
+    opacity: 0.7; /* Slightly faded for distinction */
+}
+.search-bar input:focus::placeholder {
+    color: #000; /* Darker color for the placeholder text */
+}
+
+/* Initial styles for the X button, assuming a lighter color initially */
+#clearSearch {
+    color: #ccc; /* Light color initially */
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* You might already have styles for the search bar input; add this for the focus effect */
+.search-bar input:focus + #clearSearch {
+    color: #000; /* Darker color when input is focused */
+}
+
+.dropdown-content {
+    position: absolute;
+    width: calc(100%); /* Adjust width to account for padding */
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2; /* Ensure it's above other content */
+    display: none; /* Initially hidden */
+    border-radius: 12px; /* Rounded corners at the bottom */
+    overflow: hidden; /* Hide overflow */
+    top: 110%; /* Position below the input */
+}
+
+.dropdown-content div {
+    padding: 10px;
+    cursor: pointer;
+    color: #333; /* Dark color for contrast */
+    background-color: #ffffff; /* Background color */
+}
+
+.dropdown-content div:hover, .dropdown-content div:focus {
+    background-color: #f2f2f2; /* Lighter shade on hover/focus */
+    color: #000; /* Ensure text contrast for accessibility */
+}
+
+/* tags */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 8px; /* Increase space between tags for better touch targets */
+    margin-bottom: 20px;
+}
+
+.tag {
+
+    padding: 4px 15px; /* Increase padding for a larger, more clickable area */
+    border: none;
+    border-radius: 25px; /* More pronounced rounded corners */
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem; /* Adjust font size for readability */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for interaction */
+
+}
+.tag {
+    background: #FFD242; /* Bright yellow background */
+    color: #00206F; /* Dark text for contrast */
+}
+.tag:hover, .tag:focus {
+    background-color: #00e066; /* A slightly darker shade of neon green for interaction feedback */
+    color: #000;
+}
+
+/* VIDEO GALLERY*/
+#video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.video-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    margin: 20px;
+}
+
+.video-item video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+.prompt-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+    height: 200px; /* Unified height */
+    overflow: hidden; /* Hide overflow */
+}
+
+.video-item p {
+    padding: 10px 15px;
+    margin: 0 0 10px;
+    flex-grow: 1;
+    color: #333;
+    font-weight: 400;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: 100px; /* Shorter maximum height for the text box */
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+}
+
+/* Enhancements for hover effect on the entire video item */
+.video-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .video-item {
+        flex-direction: column;
+        max-width: 100%;
+    }
+}
+
+.video-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Space between video info and prompt description */
+}
+
+.video-title {
+    font-weight: bold;
+    color: black; /* Highlight color */
+    margin: 0; /* Adjust as needed */
+}
+
+.video-tag {
+    background-color: rgba(0,0,0,0); /* Transparent background for subtlety */
+    color: #568; /* Subdued text color for a subtle appearance */
+    padding: 2px 6px;
+    border-radius: 10px; /* Maintains a slightly rounded edge */
+    font-size: 0.9rem; /* Smaller font size for subtlety */
+    margin: 0 5px 5px 0; /* Spacing between tags and from container edges */
+    display: inline-block; /* Allows for proper padding and margin application */
+}
+
+.video-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    margin-bottom: 20px; /* Space below the video */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-item p, .video-tags {
+    padding-bottom: 50px; /* Add bottom padding to make space for the button */
+}
+
+.copy-btn:hover, .copy-btn:focus {
+    background-color: #0056b3; /* A slightly darker shade for interaction feedback */
+    transform: scale(1.05); /* Slightly enlarge button on hover/focus for interaction feedback */
+}
+
+
+.prompt-container {
+  position: relative; /* Allows absolute positioning relative to this container */
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #eee;
+  height: 200px; /* Or any fixed height */
+  overflow: hidden; /* Hide overflow */
+}
+
+
+
+#load-more {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#load-more:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    #video-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tag {
+        margin: 5px;
+    }
+}

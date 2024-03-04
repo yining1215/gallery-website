@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompts for Video</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+      <div class="logo">promptsfor.video</div>
+      <div class="nav-items">
+          <ul>
+              <li><a href="#sora">SORA</a></li>
+              <li><a href="#runaway">RUNAWAY</a></li>
+              <li><a href="#about">ABOUT</a></li>
+          </ul>
+      </div>
+  </nav>
+
+  <section class="first-screen">
+      <div id="p5-container"></div>
+      <div class="content">
+          <h1>AI Prompts for Generating <span class="highlight">Videos</span><span class="emoji">&nbsp;🎥</span></h1>
+          <p>This is an extensive collection of creative prompts tailored for text-to-video AI tools like Sora and Runaway, designed to inspire and facilitate video content creation.</p>
+      </div>
+  </section>
+
+  <div class="trending-tags-area">
+      <h2><span class="emoji">&nbsp;🔥</span> TRENDING CATEGORIES <span class="emoji">&nbsp;🔥</span></h2>
+      <div class="tags" id="filter">
+          <button class="tag" onclick="filterVideos('all')">ALL VIDEOS</button>
+          <button class="tag" onclick="filterVideos('technology')">technology</button>
+          <button class="tag" onclick="filterVideos('woman')">woman</button>
+          <button class="tag" onclick="filterVideos('art')">art</button>
+
+      </div>
+      <div class="search-bar">
+          <input type="text" placeholder="Search all tags..." id="searchInput">
+          <button id="clearSearch">&#x2715;</button> <!-- X button -->
+          <div class="dropdown-content" id="dropdownContent"></div>
+      </div>
+  </div>
+
+  <section id="video-gallery">
+      <div class="video-item" data-tags="technology,woman">
+          <!-- <video src="path/to/video1.mp4" controls></video> -->
+          <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/R-fKSUZr7GM?si=jfmgrwsbZDg9CEV9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="prompt-container">
+              <div class="video-info">
+                  <h4 class="video-title">Video Title</h4> <!-- Smaller title, still highlighted -->
+                  <div class="video-tag">Video By Sora</div>
+              </div>
+              <p>Dte scrollingate scrollingLonger text to demonstrate scrolling.</p>
+              <div class="tags">
+                  <span class="tag">Technology</span>
+                  <span class="tag">Design</span>
+                  <!-- Additional tags here -->
+              </div>
+          </div>
+      </div>
+      <div class="video-item" data-tags="technology,woman">
+          <!-- <video src="path/to/video1.mp4" controls></video> -->
+          <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/R-fKSUZr7GM?si=jfmgrwsbZDg9CEV9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="prompt-container">
+              <div class="video-info">
+                  <h4 class="video-title">Video Title</h4> <!-- Smaller title, still highlighted -->
+                  <div class="video-tag">Video By Sora</div>
+              </div>
+              <p>Dte scrollingate scrollingLonger text to demonstrate scrolling.</p>
+              <div class="tags">
+                  <span class="tag">Technology</span>
+                  <span class="tag">Design</span>
+                  <!-- Additional tags here -->
+              </div>
+          </div>
+      </div>
+      <div class="video-item" data-tags="technology">
+          <!-- <video src="path/to/video1.mp4" controls></video> -->
+          <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/R-fKSUZr7GM?si=jfmgrwsbZDg9CEV9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="prompt-container">
+              <div class="video-info">
+                  <h4 class="video-title">Video Title</h4> <!-- Smaller title, still highlighted -->
+                  <div class="video-tag">Video By Sora</div>
+              </div>
+              <p>Dte scrollingate scrollingLonger text to demonstrate scrolling.</p>
+              <div class="tags">
+                  <span class="tag">Technology</span>
+                  <span class="tag">Design</span>
+                  <!-- Additional tags here -->
+              </div>
+          </div>
+      </div>
+      <div class="video-item" data-tags="woman">
+          <!-- <video src="path/to/video1.mp4" controls></video> -->
+          <div class="video-container">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/R-fKSUZr7GM?si=jfmgrwsbZDg9CEV9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="prompt-container">
+              <div class="video-info">
+                  <h4 class="video-title">Video Title</h4> <!-- Smaller title, still highlighted -->
+                  <div class="video-tag">Video By Sora</div>
+              </div>
+              <p>Dte scrollingate scrollingLonger text to demonstrate scrolling.</p>
+              <div class="tags">
+                  <span class="tag">Technology</span>
+                  <span class="tag">Design</span>
+                  <!-- Additional tags here -->
+              </div>
+          </div>
+      </div>
+      <!-- Repeat for more video items -->
+  </section>
+
+
+  <button id="load-more">Load More</button>
+
+  <script src="bubble.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
